@@ -1,0 +1,339 @@
+THE PERFRECT STRUCT ( Approved )
+
+/
+│
+│
+│
+├── node_modules/
+│
+│
+│
+├── package.json    
+│
+├── package-lock.json  
+│
+│
+│
+├── .gitignore
+│
+│
+│
+├── .env   
+│
+│
+│
+├── logs/
+│   └── app.log
+│
+│
+│
+├── config/
+│   │
+│   │
+│   ├── global/
+│   │   │ 
+│   │   ├── global.config.json                     # קובץ JSON לתצורה כללית
+│   │   │ 
+│   │   ├── configurations/
+│   │   │   │
+│   │   │   ├── navigation.config.json             # קובץ JSON לתצורת ניווט
+│   │   │   ├── general.config.json                # קובץ JSON לתצורה כללית
+│   │   │   └── communication.config.json          # קובץ JSON לתצורת תקשורת
+│   │   │ 
+│   │   ├── subLoaders/
+│   │   │   │
+│   │   │   ├── navigation.subLoader.js            # קובץ JS לטעינת תצורת ניווט
+│   │   │   ├── general.subLoader.js               # קובץ JS לטעינת התצורה הכללית
+│   │   │   └── communication.subLoader.js         # קובץ JS לטעינת תצורת התקשורת
+│   │   │  
+│   │   └── loadConfig.global.js                    # Main Loader
+│   │          
+│   │ 
+│   ├── app/
+│   │   │
+│   │   ├── app.config.json
+│   │   │
+│   │   ├── configurations/
+│   │   │   │
+│   │   │   ├── navigation.config.json             # קובץ JSON לתצורת ניווט באפליקציה
+│   │   │   └── assets.config.json                 # קובץ JSON לתצורת נכסים
+│   │   │   
+│   │   ├── subLoaders/
+│   │   │   │
+│   │   │   ├── navigation.subLoader.js            # קובץ JS לטעינת תצורת ניווט
+│   │   │   └── assets.subLoader.js                # קובץ JS לטעינת תצורת נכסים
+│   │   │   
+│   │   └── loadConfig.app.js                       # Main Loader
+│   │
+│   │
+│   └── server/
+│       │  
+│       ├── configurations/
+│       │   │
+│       │   ├── database.config.json               # קובץ JSON לתצורת מסד נתונים
+│       │   ├── server.config.json                 # קובץ JSON לתצורת השרת
+│       │   └── api.config.json                    # קובץ JSON לתצורת ה-API
+│       │   
+│       ├── subLoaders/
+│       │   │
+│       │   ├── database.subLoader.js              # קובץ JS לטעינת תצורת מסד הנתונים
+│       │   ├── server.subLoader.js                # קובץ JS לטעינת תצורת השרת
+│       │   └── api.subLoader.js                   # קובץ JS לטעינת תצורת ה-API
+│       │   
+│       └── loadConfig.server.js                    # Main Loader
+│   
+│   
+│   
+├── shared/
+│   │
+│   │
+│   ├── models/                                    # מודלים שמשותפים לשרת וללקוח
+│   │   │
+│   │   ├── user.model.ts                          # מודל נתוני משתמש
+│   │   ├── product.model.ts                       # מודל נתוני מוצר
+│   │   └── order.model.ts                         # מודל נתוני הזמנה
+│   │
+│   │
+│   ├── types/                                     # טיפוסים (TypeScript interfaces/types)
+│   │   │
+│   │   ├── user.types.ts                          # טיפוסים למשתמש
+│   │   ├── product.types.ts                       # טיפוסים למוצר
+│   │   └── api.types.ts                           # טיפוסים לקלטים ופלטים של API
+│   │  
+│   │  
+│   ├── utils/                                     # פונקציות עזר (utilities)
+│   │   │
+│   │   ├── dateHelpers.ts                         # פונקציות עזר לעבודה עם תאריכים
+│   │   ├── stringHelpers.ts                       # פונקציות עזר לעבודה עם מחרוזות
+│   │   ├── validationHelpers.ts                   # פונקציות עזר לאימות נתונים
+│   │   └── apiHelpers.ts                          # פונקציות עזר לתקשורת עם API
+│   │  
+│   │  
+│   ├── constants/                                 # קבועים (constants)
+│   │   │
+│   │   ├── errorCodes.ts                          # קודים לשגיאות
+│   │   ├── routes.ts                              # מסלולי API
+│   │   ├── config.ts                              # קבועים עבור קונפיגורציות
+│   │   └── messages.ts                            # הודעות סטנדרטיות
+│   │  
+│   │  
+│   └── services/                                  # שירותים שמשותפים (כמו גישה ל-API)
+│       │
+│       ├── api.service.ts                         # שירות גישה ל-API
+│       ├── auth.service.ts                        # שירותי אימות
+│       └── data.service.ts                        # שירות לניהול נתונים (כמו שמירה ושחזור)
+│     
+│
+│
+├── dist/                                          # כל הקבצים המקומפלים
+│   │  
+│   │ 
+│   ├── server/                                    # קבצי השרת לאחר קומפילציה
+│   │   │
+│   │   ├── index.js                               # נקודת הכניסה של השרת
+│   │   ├── app.js                                 # קובץ האפליקציה
+│   │   │
+│   │   ├── middlewares/                           # תיקיית middleware
+│   │   │   │
+│   │   │   ├── logger.middleware.js               # Middleware לרישום
+│   │   │   └── error.middleware.js                # Middleware לשגיאות
+│   │   │
+│   │   ├── controllers/                           # תיקיית controllers
+│   │   │   │
+│   │   │   ├── user.controller.js                 # בקר למשתמשים
+│   │   │   ├── product.controller.js              # בקר למוצרים
+│   │   │   └── order.controller.js                # בקר להזמנות
+│   │   │
+│   │   └── models/                                # תיקיית models
+│   │       │
+│   │       ├── user.model.js                      # מודל נתוני משתמש
+│   │       ├── product.model.js                   # מודל נתוני מוצר
+│   │       └── order.model.js                     # מודל נתוני הזמנה
+│   │  
+│   │ 
+│   └── client/                                    # קבצי ה-production של React
+│       │
+│       ├── index.html                             # קובץ ה-HTML הראשי
+│       │
+│       ├── static/                                # קבצים סטטיים
+│       │   ├── css/                               # קבצי CSS סטטיים
+│       │   │   ├── styles.css                     # קובץ CSS עיקרי
+│       │   │   └── themes.css                     # קובץ CSS לתמות
+│       │   ├── js/                                # קבצי JavaScript סטטיים
+│       │   │   ├── main.js                        # קובץ JS עיקרי
+│       │   │   └── vendor.js                      # קבצים חיצוניים
+│       │   └── media/                             # מדיה (תמונות, סרטונים וכו')
+│       │
+│       └── media/                                 # מדיה (תמונות, סרטונים וכו')
+│           ├── logo.png                           # תמונת לוגו
+│           ├── banner.jpg                         # תמונת באנר
+│           └── video.mp4                          # סרטון פרומו
+│
+│
+│
+└── src/
+     │
+     │
+     ├── server/                                    # קוד מקור השרת
+     │   │
+     │   ├── index.ts                               # נקודת הכניסה של השרת
+     │   │
+     │   ├── views/                                 # תצוגות (views)
+     │   │   │
+     │   │   ├── home.ejs                          # תצוגת הבית
+     │   │   ├── error.html                        # תצוגת שגיאה
+     │   │   └── about.ejs                         # תצוגת דף על
+     │   │  
+     │   ├── app/                                   # כל האפליקציה והלוגיקה שלה                 # הגדרות האפליקציה (כמו middleware)
+     │   │   │
+     │   │   ├──  app.ts     
+     │   │   │
+     │   │   ├── types/                             # טיפוסים (TypeScript interfaces)
+     │   │   │   │
+     │   │   │   ├── user.type.ts                  # טיפוסים למשתמש
+     │   │   │   ├── product.type.ts               # טיפוסים למוצר
+     │   │   │   └── order.type.ts                 # טיפוסים להזמנה
+     │   │   │
+     │   │   ├── services/                          # שירותים לשרת
+     │   │   │   │
+     │   │   │   ├── user.service.ts                # שירותי משתמשים
+     │   │   │   ├── product.service.ts             # שירותי מוצרים
+     │   │   │   └── order.service.ts               # שירותי הזמנות
+     │   │   │  
+     │   │   ├── utils/                             # פונקציות עזר
+     │   │   │   │
+     │   │   │   ├── helpers.ts                     # פונקציות עזר כלליות
+     │   │   │   ├── logger.ts                      # פונקציות לוגינג
+     │   │   │   └── validation.ts                  # פונקציות לאימות נתונים
+     │   │   │  
+     │   │   ├── routes/                            # מסלולי API
+     │   │   │   │
+     │   │   │   ├── home.routes.ts                 # מסלול לדף הבית
+     │   │   │   ├── about.routes.ts                # מסלול לדף על
+     │   │   │   └── login.routes.ts                # מסלול לדף הכניסה
+     │   │   │   
+     │   │   ├── controllers/                       # בקרי API
+     │   │   │   │
+     │   │   │   ├── home.controller.ts             # בקר לדף הבית
+     │   │   │   ├── about.controller.ts            # בקר לדף על
+     │   │   │   └── login.controller.ts            # בקר לדף הכניסה
+     │   │   │  
+     │   │   ├── middlewares/                       # Middleware
+     │   │   │   │
+     │   │   │   ├── auth.middleware.ts             # Middleware לאימות
+     │   │   │   ├── error.middleware.ts            # Middleware לשגיאות
+     │   │   │   └── logger.middleware.ts           # Middleware לרישום
+     │   │   │  
+     │   │   └── models/                            # מודלים של נתונים
+     │   │       │
+     │   │       ├── user.model.ts                  # מודל נתוני משתמש
+     │   │       ├── product.model.ts               # מודל נתוני מוצר
+     │   │       └── order.model.ts                 # מודל נתוני הזמנה
+     │   │     
+     │   └── tests/                                 # קבצי בדיקות
+     │       │     
+     │       ├── server.test.ts                     # בדיקות לשרת
+     │       ├── user.service.test.ts               # בדיקות לשירותי משתמשים
+     │       └── product.controller.test.ts         # בדיקות לבקר למוצרים
+     │
+     │
+     ├── client/                                    # קוד מקור הלקוח (React)
+          │
+          ├── public/                                # קבצים ציבוריים
+          │   │
+          │   ├── index.html                         # קובץ ה-HTML הראשי
+          │   ├── about.html                         # דף על
+          │   ├── profile.html                       # דף פרופיל
+          │   └── 404.html                           # דף שגיאה 404
+          │
+          └── src/                                   # קוד המקור של יישום ה-React
+               │  
+               ├── index.ts                           # נקודת הכניסה של האפליקציה
+               ├── App.ts                             # רכיב ה-App הראשי
+               │  
+               ├── components/                        # רכיבי UI
+               │   │
+               │   ├── Menu.ts                        # רכיב תפריט
+               │   ├── Header.ts                      # רכיב כותרת
+               │   ├── Footer.ts                      # רכיב תחתית
+               │   ├── UserProfile.ts                 # רכיב פרופיל משתמש
+               │   ├── ProductCard.ts                 # רכיב לתצוגת מוצר
+               │   ├── ErrorBoundary.ts               # רכיב לטיפול בשגיאות
+               │   └── ...                            # רכיבים נוספים
+               │
+               ├── models/                            # מודלים ללקוח
+               │   │
+               │   ├── user.model.ts                  # מודל נתוני משתמש
+               │   ├── product.model.ts               # מודל נתוני מוצר
+               │   └── order.model.ts                 # מודל נתוני הזמנה
+               │  
+               ├── utils/                             # פונקציות עזר ללקוח
+               │   │
+               │   ├── init.ts                        # פונקציות אתחול
+               │   ├── apiHelpers.ts                  # פונקציות עזר לתקשורת עם ה-API
+               │   └── validationHelpers.ts           # פונקציות עזר לאימות נתונים
+               │
+               ├── services/                          # שירותים ללקוח
+               │   │
+               │   ├── user.service.ts                # שירותי משתמשים
+               │   ├── product.service.ts             # שירותי מוצרים
+               │   └── order.service.ts               # שירותי הזמנות
+               │
+               ├── pages/                             # דפי האפליקציה
+               │   │
+               │   ├── home/                          # דף הבית
+               │   │   │
+               │   │   ├── index.ts                   # דף הבית - נקודת הכניסה
+               │   │   ├── home.model.ts              # מודל הבית
+               │   │   ├── home.utils.ts              # פונקציות עזר לבית
+               │   │   └── home.styles.scss           # עיצוב לדף הבית
+               │   │
+               │   ├── profile/                       # דף פרופיל
+               │   │   │
+               │   │   ├── index.ts                   # דף פרופיל - נקודת הכניסה
+               │   │   ├── profile.model.ts           # מודל פרופיל
+               │   │   ├── profile.utils.ts           # פונקציות עזר לפרופיל
+               │   │   └── profile.styles.scss        # עיצוב לדף פרופיל
+               │   │ 
+               │   └── about/                         # דף על
+               │       │
+               │       ├── index.ts                   # דף על - נקודת הכניסה
+               │       ├── about.model.ts             # מודל על
+               │       ├── about.utils.ts             # פונקציות עזר לדף על
+               │       └── about.styles.scss          # עיצוב לדף על
+               │       
+               ├── assets/                            # נכסים (assets) ללקוח
+               │   │
+               │   ├── images/                         # תמונות
+               │   │   │
+               │   │   ├── logo.png                    # לוגו האפליקציה
+               │   │   ├── banner.jpg                  # תמונת באנר
+               │   │   └── profile.jpg                 # תמונת פרופיל
+               │   │  
+               │   ├── fonts/                          # גופנים
+               │   │   │
+               │   │   ├── custom-font.ttf             # גופן מותאם אישית
+               │   │   └── another-font.woff           # גופן נוסף
+               │   │ 
+               │   ├── videos/                         # סרטונים
+               │   │   │
+               │   │   ├── intro.mp4                   # סרטון הקדמה
+               │   │   └── promo.mp4                   # סרטון פרומו
+               │   │   
+               │   └── ...                             # נכסים נוספים
+               │
+               └── styles/                            # קבצי CSS/SASS
+                    │
+                    ├── main.scss                       # קובץ CSS הראשי
+                    │
+                    ├── variables.scss                  # משתנים ל-SCSS
+                    │
+                    ├── header.scss                     # עיצוב רכיב הכותרת
+                    ├── footer.scss                     # עיצוב רכיב התחתית
+                    │
+                    ├── userProfile.scss                # עיצוב רכיב פרופיל המשתמש
+                    ├── productCard.scss                # עיצוב רכיב תצוגת מוצר
+                    │
+                    ├── aboutPage.styles.scss           # עיצוב לדף על
+                    ├── profilePage.styles.scss         # עיצוב לדף פרופיל
+                    └── homePage.styles.scss            # עיצוב לדף הבית       
